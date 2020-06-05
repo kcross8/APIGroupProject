@@ -1,0 +1,16 @@
+﻿@model List<Favorites>
+@{
+    ViewData["Title"] = "Favorites";
+}
+
+<h1>Favorites</h1>
+
+@foreach (var f in Model)
+{
+<div>
+    <p>@f.title</p>
+    <p><img src="@f.thumbnail" /></p>
+    <p>@f.ingredients</p>
+    <p>@f.href</p>
+</div>
+}
