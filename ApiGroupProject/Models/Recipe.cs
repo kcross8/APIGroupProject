@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 
 namespace APIGroupProject.Models
 {
+
     public class RecipeSearch
     {
-        public Recipe[] Search { get; set; }
-        public string totalResults { get; set; }
-        public string Response { get; set; }
+        public string title { get; set; }
+        public float version { get; set; }
+        public string href { get; set; }
+        public Recipe[] results { get; set; }
     }
+
     public class Recipe
     {
         public string title { get; set; }
