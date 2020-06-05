@@ -1,5 +1,4 @@
-﻿@model APIGroupProject.Models.Recipe
-<p>@Model.title</p>
-<p>@Model.ingredients</p>
-<p>@Model.href</p>
-<img src="@Model.thumbnail" />
+﻿<form action="Recipe/Search" method="post">
+    <input type="text" name="title" />
+    <input type="submit" />
+</form>
