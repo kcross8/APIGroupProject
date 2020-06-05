@@ -1,0 +1,106 @@
+ApiGroupProject
+
+June 4, 2020
+
+Objective: Build an ASP.Net Core application that uses an API. Choose one of four APIs: Movie, Recipe, Music, or Pokemon. The app must have a Search View, a SearchResults View with an "Add to Favorites" button, a Favorites View with add/remove functionality to a FavoritesDb.
+
+Team: Josh, Kyle and Tomás
+
+Workflow:
+
+// 1. Choose an API. Register for an API key.
+
+// We chose the recipe API.
+
+// 2. Set up a project repository.
+
+// 3. Create a new VS ASP.NET Core MVC web app.
+
+// 4. Configure the VS project for Identity Framework Authentication.
+
+// 5. Configure the VS project to read from the API.
+
+// Install the HttpClient from NuGet Package Manager: System.Net.Http
+// Install WebAPI.Client library from NuGet
+
+// Create Model Class
+// Models/Recipe.cs
+
+using System;
+namespace ApiGroupProject
+{
+	public class RecipeRootobject
+	{
+		public Recipe[] Recipes { get; set; }
+	}
+	public class Recipe
+        {
+            public string title { get; set; }
+            public string href { get; set; }
+            public string ingredients { get; set; }
+            public string thumbnail { get; set; }
+        }
+}
+
+// Controllers/RecipeController.cs
+
+using System.Threading.Tasks;
+using ApiGroupProject.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+
+namespace Day32_BreweryDbAPI.Controllers
+{
+    public class RecipeController : Controller
+    {
+	private readonly RecipeDAL _recipe = new RecipeDal();
+	private
+    }
+}
+
+// Models/RecipeDAL.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace ApiGroupProject.Models
+{
+    public class RecipeDAL
+    {
+        private readonly string _apiKey;
+
+        public RecipeDAL(string apiKey)
+        {
+            _apiKey = apiKey;
+        }
+
+        public HttpClient GetClient()
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("http://www.recipepuppy.com/api");
+            return client;
+        } 
+
+        public async Task<string> GetRawJSON()
+        {
+            var client = GetClient();
+            var response = await client.GetAsync($"/recipes");
+            var recipeJSON = await response.Content.ReadAsStringAsync();
+            return recipeJSON;
+        }
+
+        public async Task<List<Recipe>> GetRecipe(string ingredient)
+        {
+            var client = GetClient();
+            var response = await client.GetAsync($"/?i={ingredient}");
+            //install-package Microsoft.AspNet.WebAPI.Client
+            var recipes = await response.Content.ReadAsAsync<List<Recipe>>();
+            return recipes;
+        }
+    }
+}
+
+// 6. Configure Entity Framework using the code first approach to set up the Favorites database.
