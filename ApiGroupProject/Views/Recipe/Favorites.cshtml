@@ -4,13 +4,24 @@
 }
 
 <h1>Favorites</h1>
-
-@foreach (var f in Model)
-{
-<div>
-    <p>@f.title</p>
-    <p><img src="@f.thumbnail" /></p>
-    <p>@f.ingredients</p>
-    <p>@f.href</p>
-</div>
-}
+<table class="table table-bordered">
+    <thead>
+        <tr><th>Recipe Title</th> <th>Recipe Ingredients</th> <th>Thumbnail</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var f in Model)
+        {
+            <tr>
+                <td><a href="@f.href">@f.title</a></td>
+                <td>@f.ingredients</td>
+                <td><img src="@f.thumbnail" /></td>
+                <td>
+                    <form action="RemoveFavorite" method="post">
+                        <input type="hidden" name="title" value="@f.title" />
+                        <button type="submit" value="Submit">Remove Favorite</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
