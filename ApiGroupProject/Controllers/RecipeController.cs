@@ -25,6 +25,11 @@ namespace APIGroupProject.Controllers
         public IActionResult Search()
         {
             List<Recipe> recipes = RD.SearchRecipes("onions");
+            return View("SearchResults", recipes);
+        }
+
+        public IActionResult SearchResults(List<Recipe> recipes)
+        {
             return View(recipes);
         }
     }
