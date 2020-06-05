@@ -4,11 +4,21 @@
         <thead>
             <tr><td>Recipe Title</td> <td>Recipe Ingredients</td> <td>Recipe Link</td></tr>
         </thead>
-        @foreach(Recipe recipe in Model)
+        @foreach (Recipe recipe in Model)
         {
-        <tr>
-            <td>@recipe.title </td><td>@recipe.ingredients</td><td>@recipe.href</td>
-        </tr>
+            <tr>
+                <td>@recipe.title </td>
+                <td>@recipe.ingredients</td>
+                <td>@recipe.href</td>
+                <td><form action="AddFavorite" method="post">
+    <input type="hidden" name="title" value="@recipe.title" />
+    <input type="hidden" name="ingredients" value="@recipe.ingredients" />
+    <input type="hidden" name="href" value="@recipe.href" />
+    <input type="hidden" name="thumbnail" value="@recipe.thumbnail" />
+                    <button type="submit" value="Submit">Add Favorite</button>
+</form></td>
+            </tr>
+            
         }
-        
+
     </table>

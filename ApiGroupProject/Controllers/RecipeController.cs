@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using APIGroupProject.Models;
@@ -42,23 +43,23 @@ namespace APIGroupProject.Controllers
             return View(thisUsersFavorites);
         }
 
-        public IActionResult AddFavorite(Recipe recipe)
+        public IActionResult AddFavorite(string title, string ingredients, string href, string thumbnail)
         {
             Favorites newFavorite = new Favorites();
             if (ModelState.IsValid)
             {
                 newFavorite.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                newFavorite.title = recipe.title;
-                newFavorite.ingredients = recipe.ingredients;
-                newFavorite.href = recipe.href;
-                newFavorite.thumbnail = recipe.thumbnail;
+                newFavorite.title = title;
+                newFavorite.ingredients = ingredients;
+                newFavorite.href = href;
+                newFavorite.thumbnail = thumbnail;
                 _context.Favorites.Add(newFavorite);
                 _context.SaveChanges();
-                return RedirectToAction("SearchResults");
+                return RedirectToAction("Favorites");
             }
             else
             {
-                return RedirectToAction("SearchResults");
+                return RedirectToAction("Index");
             }
         }
         public IActionResult RemoveFavorite(string title)
