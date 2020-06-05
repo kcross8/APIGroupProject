@@ -53,7 +53,7 @@ namespace APIGroupProject.Models
             string output = GetAPIString(search, true);
             JObject json = JObject.Parse(output);
             RecipeSearch results = JsonConvert.DeserializeObject<RecipeSearch>(json.ToString());
-            List<Recipe> recipes = results.Search.ToList();
+            List<Recipe> recipes = results.results.ToList();
             return recipes;
         }
     }

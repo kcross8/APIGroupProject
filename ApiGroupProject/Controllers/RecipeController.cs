@@ -23,12 +23,16 @@ namespace APIGroupProject.Controllers
         }
         public IActionResult Index()
         {
-            Recipe r = RD.GetRecipe("Vegetable-Pasta Oven Omelet");
-            return View(r);
+            return View();
         }
-        public IActionResult Search()
+        public IActionResult Search(string title)
         {
-            List<Recipe> recipes = RD.SearchRecipes("onions");
+            List<Recipe> recipes = RD.SearchRecipes(title);
+            return View("SearchResults", recipes);
+        }
+
+        public IActionResult SearchResults(List<Recipe> recipes)
+        {
             return View(recipes);
         }
         public IActionResult Favorites()

@@ -13,7 +13,7 @@ namespace APIGroupProject.Models
         public string href { get; set; }
         public Recipe[] results { get; set; }
     }
-    
+
     public class Recipe
     {
         public string title { get; set; }
