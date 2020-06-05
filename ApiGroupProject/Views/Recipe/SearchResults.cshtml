@@ -1,6 +1,9 @@
 ﻿@model List<Recipe>
 
-    <table>
+    <table class="table table-bordered">
+        <thead>
+            <tr><td>Recipe Title</td> <td>Recipe Ingredients</td> <td>Recipe Link</td></tr>
+        </thead>
         @foreach(Recipe recipe in Model)
         {
         <tr>
