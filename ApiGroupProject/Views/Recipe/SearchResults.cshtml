@@ -2,23 +2,22 @@
 
     <table class="table table-bordered">
         <thead>
-            <tr><td>Recipe Title</td> <td>Recipe Ingredients</td> <td>Recipe Link</td></tr>
+            <tr><th>Recipe Title</th> <th>Recipe Ingredients</th> <th>Thumbnail</th></tr>
         </thead>
-        @foreach (Recipe recipe in Model)
+        <tbody>
+        @foreach(Recipe recipe in Model)
         {
-            <tr>
-                <td>@recipe.title </td>
-                <td>@recipe.ingredients</td>
-                <td>@recipe.href</td>
-                <td><form action="AddFavorite" method="post">
-    <input type="hidden" name="title" value="@recipe.title" />
-    <input type="hidden" name="ingredients" value="@recipe.ingredients" />
-    <input type="hidden" name="href" value="@recipe.href" />
-    <input type="hidden" name="thumbnail" value="@recipe.thumbnail" />
-                    <button type="submit" value="Submit">Add Favorite</button>
-</form></td>
-            </tr>
-            
+        <tr>
+            <td><a href="@recipe.href">@recipe.title</a> </td><td>@recipe.ingredients</td><td><img src= "@recipe.thumbnail" /></td><td>
+    <form action="AddFavorite" method="post">
+        <input type="hidden" name="title" value="@recipe.title" />
+        <input type="hidden" name="ingredients" value="@recipe.ingredients" />
+        <input type="hidden" name="href" value="@recipe.href" />
+        <input type="hidden" name="thumbnail" value="@recipe.thumbnail" />
+        <button type="submit" value="Submit">Add Favorite</button>
+    </form>
+</td>
+        </tr>
         }
-
+        </tbody>
     </table>
