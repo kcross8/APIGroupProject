@@ -2,13 +2,14 @@
 
     <table class="table table-bordered">
         <thead>
-            <tr><td>Recipe Title</td> <td>Recipe Ingredients</td> <td>Recipe Link</td></tr>
+            <tr><th>Recipe Title</th> <th>Recipe Ingredients</th> <th>Thumbnail</th></tr>
         </thead>
+        <tbody>
         @foreach(Recipe recipe in Model)
         {
         <tr>
-            <td>@recipe.title </td><td>@recipe.ingredients</td><td>@recipe.href</td>
+            <td>@recipe.title </td><td>@recipe.ingredients</td><td><img src= "@recipe.thumbnail" /></td>
         </tr>
         }
-        
+        </tbody>
     </table>
