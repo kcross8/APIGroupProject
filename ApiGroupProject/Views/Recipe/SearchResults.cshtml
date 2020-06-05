@@ -7,7 +7,7 @@
         @foreach(Recipe recipe in Model)
         {
         <tr>
-            <td>@recipe.title </td><td>@recipe.ingredients</td><td>@recipe.href</td>
+            <td>@recipe.title </td><td>@recipe.ingredients</td><td><a href="@recipe.href">@recipe.href</a></td>
         </tr>
         }
         
