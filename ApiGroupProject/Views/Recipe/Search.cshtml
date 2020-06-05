@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Recipe>
+@foreach (Recipe r in Model)
+{
+    <div style="margin-top: 70px">
+        <h2>@r.title</h2>
+        <h2>@r.ingredients</h2>
+        <img src="@r.thumbnail">
+
+    </div>
+}
