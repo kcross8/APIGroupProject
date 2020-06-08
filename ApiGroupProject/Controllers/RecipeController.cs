@@ -50,7 +50,7 @@ namespace APIGroupProject.Controllers
             Favorites newFavorite = new Favorites();
             if (_context.Favorites.Any(t => t.title == title))
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Favorites");
             }
             else if (ModelState.IsValid)
             {
