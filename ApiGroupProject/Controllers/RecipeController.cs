@@ -46,7 +46,11 @@ namespace APIGroupProject.Controllers
         public IActionResult AddFavorite(string title, string ingredients, string href, string thumbnail)
         {
             Favorites newFavorite = new Favorites();
-            if (ModelState.IsValid)
+            if (_context.Favorites.Any(t => t.title == title))
+            {
+                return RedirectToAction("Index");
+            }
+            else if (ModelState.IsValid)
             {
                 newFavorite.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 newFavorite.title = title;
