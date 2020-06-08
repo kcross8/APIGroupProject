@@ -5,11 +5,13 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using APIGroupProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace APIGroupProject.Controllers
 {
+    [Authorize]
     public class RecipeController : Controller
     {
         private readonly string _configuration;
